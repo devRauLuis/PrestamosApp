@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.addBtn.setOnClickListener {
+
+        binding.saveBtn.setOnClickListener {
             personViewModel.save(
                 Person(
                     names = binding.namesInput.text.toString(),
@@ -33,12 +34,47 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        personViewModel.success.observe(this, Observer {
-            if (it) {
-                Snackbar.make(view, "Guardo", Snackbar.LENGTH_LONG).show()
+        binding.newBtn.setOnClickListener {
+            binding.idInput.setText("")
+            binding.namesInput.setText("")
+            binding.surnamesInput.setText("")
+            binding.occupationInput.setText("")
+            binding.incomeInput.setText("")
+        }
+
+        binding.deleteBtn.setOnClickListener {
+            personViewModel.deleteCurrentPerson()
+            binding.newBtn.performClick()
+        }
+
+        binding.searchBtn.setOnClickListener {
+            val id = binding.idInput.toLong()
+            if (id != 0L)
+                personViewModel.find(id)
+            else Snackbar.make(view, "Especifique un ID para buscar", Snackbar.LENGTH_LONG).show()
+        }
+
+        personViewModel.personLD.observe(this, Observer {
+            if (it != null) {
+                binding.idInput.setText(it.id.toString())
+                binding.namesInput.setText(it.names)
+                binding.surnamesInput.setText(it.surnames)
+                binding.occupationInput.setText(it.occupation)
+                binding.incomeInput.setText(it.income.toString())
             }
         })
+
+        personViewModel.success.observe(this, Observer {
+            if (it) {
+                Snackbar.make(view, "Éxito", Snackbar.LENGTH_LONG).show()
+            }
+        })
+        personViewModel.error.observe(this, Observer {
+            Snackbar.make(view, it.message.toString(), Snackbar.LENGTH_LONG).show()
+        })
+
     }
 
     fun TextInputEditText.toFloat() = text.toString().toFloatOrNull() ?: 0.0f
+    fun TextInputEditText.toLong() = text.toString().toLongOrNull() ?: 0
 }
