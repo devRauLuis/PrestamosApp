@@ -2,7 +2,11 @@
     <string name="app_name">Prestamos</string>
     <string name="ingresos">Ingresos</string>
     <string name="ocupaci_n">Ocupación</string>
-    <string name="agregar">Agregar</string>
     <string name="apellidos">Apellidos</string>
     <string name="nombres">Nombres</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="guardar">Guardar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="id">ID</string>
+    <string name="search_by_id">search by id</string>
 </resources>
