@@ -4,13 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:divider="@drawable/spacer_large"
     android:orientation="vertical"
+    android:padding="10sp"
+    android:showDividers="middle"
     tools:context=".ui.view.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            app:startIconContentDescription="Persona"
+            app:startIconDrawable="@drawable/ic_baseline_fingerprint_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/idInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/id"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="#616161" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight=".1"
+            android:background="@color/purple_500"
+            android:contentDescription="@string/search_by_id"
+            android:src="@drawable/ic_baseline_search_24" />
+
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         app:startIconContentDescription="Persona"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -21,14 +58,14 @@
             android:hint="@string/nombres"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColorHint="#616161" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         app:startIconContentDescription="Persona"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -46,7 +83,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         app:startIconContentDescription="Occupation"
         app:startIconDrawable="@drawable/ic_baseline_work_24">
 
@@ -57,7 +93,8 @@
             android:hint="@string/ocupaci_n"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColorHint="#616161" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,7 +102,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         app:startIconContentDescription="Income"
         app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
 
@@ -76,15 +112,51 @@
             android:hint="@string/ingresos"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColorHint="#616161" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/addBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10sp"
-        android:text="@string/agregar" />
+        android:divider="@drawable/spacer_medium"
+        android:showDividers="middle">
+
+        <Button
+            android:id="@+id/newBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="@color/info"
+            android:text="@string/nuevo"
+            android:textColor="#F8F8F8" />
+
+
+        <Button
+            android:id="@+id/saveBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="@color/success"
+            android:text="@string/guardar"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+
+            android:backgroundTint="@color/error"
+            android:text="@string/eliminar"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
 
 </LinearLayout>
