@@ -8,13 +8,17 @@ import androidx.room.PrimaryKey
 data class Person
     (
     @PrimaryKey(autoGenerate = true)
-    val id: Int=0,
+    val id: Long = 0,
     @ColumnInfo(name = "names")
-    val names: String,
+    val names: String?,
     @ColumnInfo(name = "surnames")
-    val surnames: String,
+    val surnames: String?,
     @ColumnInfo(name = "occupation")
-    val occupation: String,
+    val occupation: String?,
     @ColumnInfo(name = "income")
-    val income: Float
+    val income: Float?,
+    @ColumnInfo(name = "created_at")
+    var createdAt: Long? = null,
+    @ColumnInfo(name = "updated_at")
+    var updatedAt: Long? = null
 )
