@@ -1,162 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Use DrawerLayout as root container for activity -->
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@drawable/spacer_large"
-    android:orientation="vertical"
-    android:padding="10sp"
-    android:showDividers="middle"
-    tools:context=".ui.view.MainActivity">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".9"
-            app:startIconContentDescription="Persona"
-            app:startIconDrawable="@drawable/ic_baseline_fingerprint_24">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="10dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/idInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/id"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:singleLine="true"
-                android:textColorHint="#616161" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageButton
-            android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
+        <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight=".1"
-            android:background="@color/purple_500"
-            android:contentDescription="@string/search_by_id"
-            android:src="@drawable/ic_baseline_search_24" />
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconContentDescription="Persona"
-        app:startIconDrawable="@drawable/ic_baseline_person_24">
+    <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/nav_drawer_menu" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/namesInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/nombres"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:singleLine="true"
-            android:textColorHint="#616161" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconContentDescription="Persona"
-        app:startIconDrawable="@drawable/ic_baseline_person_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/surnamesInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/apellidos"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:singleLine="true" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconContentDescription="Occupation"
-        app:startIconDrawable="@drawable/ic_baseline_work_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/occupationInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/ocupaci_n"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:singleLine="true"
-            android:textColorHint="#616161" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:startIconContentDescription="Income"
-        app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/incomeInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/ingresos"
-            android:imeOptions="actionDone"
-            android:inputType="number"
-            android:singleLine="true"
-            android:textColorHint="#616161" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@drawable/spacer_medium"
-        android:showDividers="middle">
-
-        <Button
-            android:id="@+id/newBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="@color/info"
-            android:text="@string/nuevo"
-            android:textColor="#F8F8F8" />
-
-
-        <Button
-            android:id="@+id/saveBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="@color/success"
-            android:text="@string/guardar"
-            android:textColor="#FFFFFF" />
-
-        <Button
-            android:id="@+id/deleteBtn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-
-            android:backgroundTint="@color/error"
-            android:text="@string/eliminar"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

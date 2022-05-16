@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/home_dest"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home" />
+    <item android:title="@string/registros">
+        <menu>
+            <group android:id="@+id/registries">
+                <item
+                    android:id="@id/person_registry_dest"
+                    android:title="@string/personas" />
+            </group>
+        </menu>
+    </item>
+    <group android:id="@+id/queries">
+
+    </group>
+</menu>
