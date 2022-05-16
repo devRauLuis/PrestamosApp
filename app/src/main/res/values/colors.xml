@@ -10,4 +10,5 @@
     <color name="info">#03a9f4</color>
     <color name="success">#4caf50</color>
     <color name="error">#ef5350</color>
+    <color name="colorPrimary">#00BFA5</color>
 </resources>

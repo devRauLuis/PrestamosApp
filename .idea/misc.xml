@@ -6,6 +6,11 @@
         <entry key="app/src/main/res/drawable/spacer_large.xml" value="0.206" />
         <entry key="app/src/main/res/drawable/spacer_medium.xml" value="0.206" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18979797363281253" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1346328195829556" />
+        <entry key="app/src/main/res/layout/fragment_occupation_registry.xml" value="0.11030354852501069" />
+        <entry key="app/src/main/res/layout/fragment_person_registry.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/nav_view_header.xml" value="0.11073108165882856" />
+        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.2170803533866218" />
       </map>
     </option>
   </component>
