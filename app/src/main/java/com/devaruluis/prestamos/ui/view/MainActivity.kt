@@ -1,21 +1,22 @@
 package com.devaruluis.prestamos.ui.view
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.devaruluis.prestamos.R
 import com.devaruluis.prestamos.databinding.ActivityMainBinding
-import com.devaruluis.prestamos.model.Person
-import com.devaruluis.prestamos.ui.viewmodel.PersonViewModel
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val personViewModel: PersonViewModel by viewModels()
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,58 +24,31 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.saveBtn.setOnClickListener {
-            personViewModel.save(
-                Person(
-                    names = binding.namesInput.text.toString(),
-                    surnames = binding.surnamesInput.text.toString(),
-                    occupation = binding.occupationInput.text.toString(),
-                    income = binding.incomeInput.toFloat()
-                )
-            )
-        }
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
 
-        binding.newBtn.setOnClickListener {
-            binding.idInput.setText("")
-            binding.namesInput.setText("")
-            binding.surnamesInput.setText("")
-            binding.occupationInput.setText("")
-            binding.incomeInput.setText("")
-        }
-
-        binding.deleteBtn.setOnClickListener {
-            personViewModel.deleteCurrentPerson()
-            binding.newBtn.performClick()
-        }
-
-        binding.searchBtn.setOnClickListener {
-            val id = binding.idInput.toLong()
-            if (id != 0L)
-                personViewModel.find(id)
-            else Snackbar.make(view, "Especifique un ID para buscar", Snackbar.LENGTH_LONG).show()
-        }
-
-        personViewModel.personLD.observe(this, Observer {
-            if (it != null) {
-                binding.idInput.setText(it.id.toString())
-                binding.namesInput.setText(it.names)
-                binding.surnamesInput.setText(it.surnames)
-                binding.occupationInput.setText(it.occupation)
-                binding.incomeInput.setText(it.income.toString())
-            }
-        })
-
-        personViewModel.success.observe(this, Observer {
-            if (it) {
-                Snackbar.make(view, "Éxito", Snackbar.LENGTH_LONG).show()
-            }
-        })
-        personViewModel.error.observe(this, Observer {
-            Snackbar.make(view, it.message.toString(), Snackbar.LENGTH_LONG).show()
-        })
-
+        val navView = binding.navView
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val drawerLayout = binding.drawerLayout
+        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        toolbar.setupWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+//        appBarConfiguration = AppBarConfiguration(navController.graph)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    fun TextInputEditText.toFloat() = text.toString().toFloatOrNull() ?: 0.0f
-    fun TextInputEditText.toLong() = text.toString().toLongOrNull() ?: 0
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+//    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration)
+                || super.onSupportNavigateUp()
+    }
+
+
 }
