@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="10sp"
     android:showDividers="middle"
-    tools:context=".ui.view.PersonRegistryFragment">
+    tools:context=".ui.view.registries.PersonRegistryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
