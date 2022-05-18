@@ -87,14 +87,14 @@ class PersonRegistryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_occupation_registry, container, false)
+        // return inflater.inflate(R.layout.fragment_occupation_registry, container, false)
         _binding = FragmentPersonRegistryBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             OccupationRegistryFragment().apply {
 
             }
