@@ -15,9 +15,17 @@
 
     <fragment
         android:id="@+id/person_registry_dest"
-        android:name="com.devaruluis.prestamos.ui.view.PersonRegistryFragment"
+        android:name="com.devaruluis.prestamos.ui.view.registries.PersonRegistryFragment"
         android:label="Registro Personas"
         tools:layout="@layout/fragment_person_registry">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/occupation_registry_dest"
+        android:name="com.devaruluis.prestamos.ui.view.registries.OccupationRegistryFragment"
+        android:label="Registro Ocupaciones"
+        tools:layout="@layout/fragment_occupation_registry">
 
     </fragment>
 
