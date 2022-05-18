@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Prestamos</string>
     <string name="ingresos">Ingresos</string>
-    <string name="ocupaci_n">Ocupación</string>
     <string name="apellidos">Apellidos</string>
     <string name="nombres">Nombres</string>
     <string name="nuevo">Nuevo</string>
@@ -9,7 +8,6 @@
     <string name="eliminar">Eliminar</string>
     <string name="id">ID</string>
     <string name="search_by_id">search by id</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prestamosapp">PrestamosApp</string>
     <string name="home">Home</string>
@@ -29,4 +27,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="ocupaci_n">Ocupación</string>
+    <string name="ocupaciones">Ocupaciones</string>
 </resources>
