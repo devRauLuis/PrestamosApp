@@ -14,19 +14,21 @@ class PersonViewModel @Inject constructor(val personDao: PersonDao) : ViewModel(
 
     val success = MutableLiveData<Boolean>()
     val personLD = MutableLiveData<Person>()
+    val peopleLD = MutableLiveData<List<Person>>()
     val error = MutableLiveData<Exception>()
 
     fun save(person: Person) {
-        if (person.id != null) insert(person)
-        else update(person)
+     insert(person)
+//        else update(person)
     }
 
     fun insert(person: Person) {
         viewModelScope.launch {
             try {
-                val id = personDao.insertWithTimestamp(person)
+                val id = personDao.insert(person)
                 find(id)
-                success.postValue(true)
+                if (personLD.value != null)
+                    success.postValue(true)
             } catch (e: Exception) {
                 error.postValue(e)
             }
@@ -36,7 +38,7 @@ class PersonViewModel @Inject constructor(val personDao: PersonDao) : ViewModel(
     fun update(person: Person) {
         viewModelScope.launch {
             try {
-                val id = personDao.updateWithTimestamp(person)
+                personDao.update(person)
                 find(person.id)
                 success.postValue(true)
             } catch (e: Exception) {
@@ -45,15 +47,11 @@ class PersonViewModel @Inject constructor(val personDao: PersonDao) : ViewModel(
         }
     }
 
-    fun find(id: Long) {
+    fun find(id: Long?) {
         viewModelScope.launch {
-            try {
-                val found = personDao.find(id)
-                personLD.postValue(found)
-                success.postValue(true)
-            } catch (e: Exception) {
-                error.postValue(e)
-            }
+            val found = personDao.find(id)
+            personLD.postValue(found)
+            success.postValue(true)
         }
     }
 
@@ -76,5 +74,23 @@ class PersonViewModel @Inject constructor(val personDao: PersonDao) : ViewModel(
         }
     }
 
+    fun getAll() {
+        viewModelScope.launch {
+            try {
+                val peopleList = personDao.getAll()
+                peopleLD.postValue(peopleList)
+                success.postValue(true)
+
+            } catch (e: Exception) {
+                error.postValue(e)
+            }
+        }
+    }
+
+    fun clear() {
+        viewModelScope.launch {
+            personLD.postValue(null)
+        }
+    }
 
 }
